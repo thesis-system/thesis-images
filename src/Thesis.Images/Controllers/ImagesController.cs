@@ -44,14 +44,16 @@ public class ImagesController : ControllerBase
             return BadRequest(nameof(id));
 
         var filePath = await _imagesRepository.GetFileName(id);
-        return filePath != null ? PhysicalFile(filePath, "image/jpeg") : NotFound(nameof(id));
+        return filePath != null 
+            ? PhysicalFile(filePath, "image/jpeg")
+            : NotFound(id);
     }
     
     /// <summary>
     /// Загружает картинку
     /// </summary>
     /// <param name="image">Идентификатор добавленного изображения</param>
-    /// <response code="201">Изображение добавлено</response>
+    /// <response code="200">Изображение добавлено</response>
     /// <response code="400">Некорректный тип изображения. Ожидается image/jpeg.</response>
     /// <response code="500">Ошибка сервера</response>
     [HttpPost]
