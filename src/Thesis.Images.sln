@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thesis.Images", "Thesis.Ima
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2CC556BB-0093-45DE-B0FE-820E473CDC8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thesis.Services.Common", "..\..\thesis-services-common\src\Thesis.Services.Common\Thesis.Services.Common.csproj", "{967F2FB8-B571-4188-B376-A252944F1B4A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,13 +14,8 @@ Global
 		{8B848108-4C33-4ECC-818C-59AE62C9FA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B848108-4C33-4ECC-818C-59AE62C9FA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B848108-4C33-4ECC-818C-59AE62C9FA2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{967F2FB8-B571-4188-B376-A252944F1B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{967F2FB8-B571-4188-B376-A252944F1B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{967F2FB8-B571-4188-B376-A252944F1B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{967F2FB8-B571-4188-B376-A252944F1B4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8B848108-4C33-4ECC-818C-59AE62C9FA2B} = {2CC556BB-0093-45DE-B0FE-820E473CDC8E}
-		{967F2FB8-B571-4188-B376-A252944F1B4A} = {2CC556BB-0093-45DE-B0FE-820E473CDC8E}
 	EndGlobalSection
 EndGlobal

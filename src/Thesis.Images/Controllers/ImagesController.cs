@@ -38,7 +38,7 @@ public class ImagesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Get(Guid id)
+    public async Task<ActionResult> Get([FromRoute] Guid id)
     {
         if (id == Guid.Empty)
             return BadRequest(nameof(id));
@@ -57,7 +57,7 @@ public class ImagesController : ControllerBase
     /// <response code="400">Некорректный тип изображения. Ожидается image/jpeg.</response>
     /// <response code="500">Ошибка сервера</response>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Guid))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<string>> Post(IFormFile image)

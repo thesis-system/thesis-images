@@ -1,6 +1,6 @@
+using Seljmov.AspNet.Commons.Helpers;
 using Thesis.Images.Options;
 using Thesis.Images.Repositories;
-using Thesis.Services.Common.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 

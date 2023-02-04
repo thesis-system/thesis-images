@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  thesis-images:
+    image: thesis-images
+    container_name: thesis-images
+    hostname: thesis-images
+    ports:
+      - 13901:5050
+    environment:
+      - ASPNETCORE_ENVIRONMENT="Development"
+      - FileStorageOption__Path=/home/
