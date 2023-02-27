@@ -28,16 +28,18 @@ public class ImagesController : ControllerBase
     }
     
     /// <summary>
-    /// Получает картинку по идентификатору
+    /// Получить картинку по идентификатору
     /// </summary>
     /// <param name="id">Идентификатор</param>
     /// <response code="200">Изображение</response>
     /// <response code="400">Некорректный идентификатор</response>
+    /// <response code="401">Токен доступа истек</response>
     /// <response code="404">Изображение не найдено</response>
     /// <response code="500">Ошибка сервера</response>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PhysicalFileResult))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult> Get([FromRoute] Guid id)
@@ -52,15 +54,17 @@ public class ImagesController : ControllerBase
     }
     
     /// <summary>
-    /// Загружает картинку
+    /// Загрузить картинку
     /// </summary>
     /// <param name="image">Идентификатор добавленного изображения</param>
     /// <response code="200">Изображение добавлено</response>
     /// <response code="400">Некорректный тип изображения. Ожидается image/jpeg.</response>
+    /// <response code="401">Токен доступа истек</response>
     /// <response code="500">Ошибка сервера</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<string>> Post(IFormFile image)
     {

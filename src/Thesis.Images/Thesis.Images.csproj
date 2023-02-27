@@ -11,8 +11,12 @@
       <DocumentationFile>bin\Debug\net7.0\Thesis.Images.xml</DocumentationFile>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net7.0\Thesis.Images.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
-        <PackageReference Include="Seljmov.AspNet.Commons" Version="1.0.2-alpha" />
+        <PackageReference Include="Seljmov.AspNet.Commons" Version="1.0.3-alpha" />
     </ItemGroup>
 
 </Project>
