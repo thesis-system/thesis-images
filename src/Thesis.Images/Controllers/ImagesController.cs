@@ -1,4 +1,3 @@
-using ImageMagick;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Thesis.Images.Repositories;
@@ -10,7 +9,7 @@ namespace Thesis.Images.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-//[Authorize]
+[Authorize]
 public class ImagesController : ControllerBase
 {
     private readonly ImagesRepository _imagesRepository;
