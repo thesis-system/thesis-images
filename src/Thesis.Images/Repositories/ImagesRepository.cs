@@ -18,6 +18,12 @@ public class ImagesRepository
     public ImagesRepository(IOptions<FileStorageOption> fileStoragePath)
     {
         _fileStorageOption = fileStoragePath.Value;
+        
+        if (!Directory.Exists(_fileStorageOption.Path))
+            Directory.CreateDirectory(_fileStorageOption.Path);
+        
+        if (!Directory.Exists(_fileStorageOption.TempPath))
+            Directory.CreateDirectory(_fileStorageOption.TempPath);
     }
 
     /// <summary>
