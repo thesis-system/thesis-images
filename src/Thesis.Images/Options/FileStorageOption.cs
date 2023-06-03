@@ -6,7 +6,17 @@ namespace Thesis.Images.Options;
 public class FileStorageOption
 {
     /// <summary>
-    /// Пусть к директории с изображениями
+    /// Путь к директории с изображениями
     /// </summary>
     public string Path { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Путь к временной директории
+    /// </summary>
+    public string TempPath { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Удалить временный файл после обработки через указанное количество секунд
+    /// </summary>
+    public int RemoveTempAt { get; set; }
 }

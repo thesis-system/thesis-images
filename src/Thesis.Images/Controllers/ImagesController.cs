@@ -1,3 +1,4 @@
+using ImageMagick;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Thesis.Images.Repositories;
@@ -9,7 +10,7 @@ namespace Thesis.Images.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+//[Authorize]
 public class ImagesController : ControllerBase
 {
     private readonly ImagesRepository _imagesRepository;
@@ -26,11 +27,14 @@ public class ImagesController : ControllerBase
         _imagesRepository = imagesRepository ?? throw new ArgumentNullException(nameof(imagesRepository));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-    
+
     /// <summary>
     /// Получить картинку по идентификатору
     /// </summary>
     /// <param name="id">Идентификатор</param>
+    /// <param name="width">Ширина изображения</param>
+    /// <param name="height">Высота изображения</param>
+    /// <param name="quality">Качество изображения</param>
     /// <response code="200">Изображение</response>
     /// <response code="400">Некорректный идентификатор</response>
     /// <response code="401">Токен доступа истек</response>
@@ -42,17 +46,24 @@ public class ImagesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> Get([FromRoute] Guid id)
+    public async Task<ActionResult> Get([FromRoute] Guid id, 
+                                        [FromQuery] int? width, [FromQuery] int? height, [FromQuery] int? quality)
     {
         if (id == Guid.Empty)
             return BadRequest(nameof(id));
 
         var filePath = await _imagesRepository.GetFileName(id);
-        return filePath != null 
-            ? PhysicalFile(filePath, "image/jpeg")
-            : NotFound(id);
+        if (string.IsNullOrEmpty(filePath)) return NotFound(id);
+        
+        if (!width.HasValue && !height.HasValue && !quality.HasValue)
+            return PhysicalFile(filePath, "image/jpeg");
+        
+        var tempName = await _imagesRepository.ProcessImage(filePath, width, height, quality);
+        var file = PhysicalFile(tempName, "image/jpeg");
+        _imagesRepository.RemoveTemp(tempName);
+        return file;
     }
-    
+
     /// <summary>
     /// Загрузить картинку
     /// </summary>
