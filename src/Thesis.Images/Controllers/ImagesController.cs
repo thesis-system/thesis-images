@@ -7,9 +7,9 @@ namespace Thesis.Images.Controllers;
 /// <summary>
 /// Контроллер для работы с изображениями
 /// </summary>
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class ImagesController : ControllerBase
 {
     private readonly ImagesRepository _imagesRepository;
